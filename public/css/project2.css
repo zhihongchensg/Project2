@@ -1,0 +1,13 @@
+body {
+  background: #006599;
+  background-size: contain;
+  color: white;
+}
+
+input[type="submit"], input[type="submit"]:hover {
+  color: white;
+}
+
+div {
+  text-align: center;
+}
