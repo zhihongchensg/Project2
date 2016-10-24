@@ -13,7 +13,7 @@ router.get('/', function (req, res) {
 })
 
 router.get('/add', function (req, res) {
-  res.render('./users/newUser')
+  res.render('users/newUser')
   // res.send('new new user')
 })
 
@@ -34,16 +34,37 @@ router.get('/:id', function (req, res) {
 })
 
 router.put('/:id', function (req, res) {
-  res.send('posted')
-  // user.update({name: })
-    // res.send('users id edit')
+  users.update(
+    {name: req.body.newuser.name},
+    {
+      gender: req.body.newuser.gender,
+      dob: req.body.newuser.dob,
+      profession:req.body.newuser.profession,
+      wealthLevel:req.body.newuser.wealthLevel
+    },
+    function (err, doc) {
+      if (err) return handleError(err);
+    }
+  )
+  console.log('am back at put routes')
+  console.log(req.body.newuser)
+  console.log(req.body.newuser.name)
+  res.send('user ' + req.params.id + '\'s account has been updated.')
+
 })
+
+// problems with the delete and put - because the name id is not disabled, can change
+// but disabling means it doesnt get returned
+// also the entries are all cap sensitive - john and John dont work
 
 router.delete('/:id', function (req, res) {
   console.log(req.body.newuser)
   console.log('at router: ' + req.body.newuser.name)
-  users.remove( { name : req.body.newuser.name}, true )
-  res.send('user ' + req.params.id + '\'s account has been removed.')
+  users.remove( { name : req.body.newuser.name}, function (err) {
+    if (err) return handleError(err);
+    // removed!
+});
+res.send('user ' + req.params.id + '\'s account has been removed.')
 })
 
 module.exports = router

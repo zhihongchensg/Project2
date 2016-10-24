@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Adding New Asset</title>
+  </head>
+
+  <body class="container">
+    <%# <div class="jumbotron">%>
+      <h2> Add New Asset</h2>
+      <form method="post" action="/assets/add">
+
+        <div class="form-group">
+          <label for="Name"> Asset Name</label>
+          <input type="text" class="form-control" id="Name" placeholder="asset name" name="newAsset[name]">
+        </div>
+        <div class="form-group">
+          <label for="Price">Price</label>
+          <input type="text" class="form-control" id="Price" placeholder="$$$" name="newAsset[price]">
+        </div>
+        <div class="form-group">
+          <label for="assetType">Asset Type</label>
+          <input type="text" class="form-control" id="assetType" placeholder="stock, share, car, property" name="newAsset[assetType]">
+        </div>
+        <div class="form-group">
+          <label for="datePurchase">Date of Purchase</label>
+          <input type="text" class="form-control" id="datePurchase" placeholder="yyyymmdd" name="newAsset[datePurchase]">
+        </div>
+        <div class="form-group">
+          <label for="userName">Owner / User Name</label>
+          <input type="text" class="form-control" id="userName" placeholder="asset owner name" name="newAsset[userName]">
+        </div>
+
+<%# can put name = "newAsset[name]" and password = "newAsset[password]" in the name s"%>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+  </body>
+</html>

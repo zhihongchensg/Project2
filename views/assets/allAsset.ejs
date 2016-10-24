@@ -1,0 +1,16 @@
+<h2>  ... PRIVATE ...  </h2>
+<h3> .... ALL ASSETS .... </h3>
+<ul>
+    <% findAllAssets.forEach(function(asset) { %>
+      <li>
+        Name: <%= asset.name %><br>
+        Price: <%= asset.price %><br>
+        assetType: <%= asset.assetType %><br>
+        datePurchase: <%= asset.datePurchase%><br>
+        userID: <%= asset.userID %><br>
+
+        <br><br>
+
+      </li>
+    <% }) %>
+</ul>

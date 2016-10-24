@@ -1,27 +1,46 @@
 var express = require('express')
 var router = express.Router()
 var asset = require('../model/asset')
+var user = require('../model/user')
 
-
-// setting the route to homepage
-// app.get('/path-name', callback(request, response)) NO
-// use router.get instead
-
-// READ ROUTES
-
-// read all movies' details
 router.get('/', function (req, res) {
-  res.render('./assets/index')
+  asset.find ({}, function(err, findAllAssets) {
+    if (err) throw new Error (err)
+    res.render('./assets/allAsset', {
+      findAllAssets: findAllAssets
+    })
+  console.log('am here at home - ' + findAllAssets)
+  })
 })
 
 router.get('/add', function (req, res) {
-  res.send('asset add ')
-  // res.send('new new user')
+  res.render('./assets/newAsset')
 })
 
 router.post('/add', function (req, res) {
-  res.send('asset add post')
+
+  user.findOne({name: req.body.newAsset.name}, function (err, user) {
+    console.log(user)
+
+    var newAsset = new asset({
+      name: req.body.newAsset.name,
+      price: req.body.newAsset.price,
+      assetType: req.body.newAsset.assetType,
+      datePurchase: req.body.newAsset.datePurchase,
+      userName: user.name
+    })
+    console.log('newAsset created')
+    console.log(newAsset)
+    console.log(newAsset.userName)
+
+    newAsset.save(function(err){
+      if(err) throw new Error(err)
+    })
+    console.log('new asset created')
+    res.redirect('./')
+  })
 })
+
 
 router.get('/:id', function (req, res) {
   res.send('asset asset id')

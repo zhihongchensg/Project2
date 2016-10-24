@@ -6,9 +6,9 @@ var assetSchema = new mongoose.Schema({
   price: Number,
   assetType: String,
   datePurchase: Date,
-  userID: {
+  userName: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'user'
+    ref: 'User'
   }
 })
 
