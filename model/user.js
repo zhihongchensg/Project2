@@ -6,7 +6,7 @@ var userSchema = new mongoose.Schema({
   gender: String,
   dob: String,
   profession: String,
-  assetLevel: String
+  wealthLevel: String
 })
 
 var User = mongoose.model('User', userSchema)

@@ -1,0 +1,16 @@
+<h2>  ... PRIVATE ...  </h2>
+<h3> .... ALL USERS .... </h3>
+<ul>
+    <% findAllUsers.forEach(function(user) { %>
+      <li>
+        Name: <%= user.name %><br>
+        Gender: <%= user.gender %><br>
+        DOB: <%= user.dob %><br>
+        Profession: <%= user.profession %><br>
+        WealthLevel: <%= user.wealthLevel %><br>
+
+        <br><br>
+
+      </li>
+    <% }) %>
+</ul>

@@ -2,41 +2,48 @@ var express = require('express')
 var router = express.Router()
 var users = require('../model/user')
 
-
-// setting the route to homepage
-// app.get('/path-name', callback(request, response)) NO
-// use router.get instead
-
-// READ ROUTES
-
-// read all movies' details
 router.get('/', function (req, res) {
-  res.render('./users/index')
+  users.find ({}, function(err, findAllUsers) {
+    if (err) throw new Error (err)
+    res.render('./users/allUsers', {
+      findAllUsers: findAllUsers
+    })
+  console.log('am here - ' + findAllUsers)
+  })
 })
 
 router.get('/add', function (req, res) {
-  res.send('users add ')
+  res.render('./users/newUser')
   // res.send('new new user')
 })
 
 router.post('/add', function (req, res) {
-  res.send('users add post')
+  users.create(req.body.newuser, function (err, savedUser) {
+    console.log('new user created')
+    res.redirect('./')
+  })
 })
 
 router.get('/:id', function (req, res) {
-  res.send('users users id')
-})
-
-router.post('/:id/edit', function (req, res) {
-  res.send('users id edit')
+  users.findOne({name: req.params.id}, function (err, findOneUser){
+    if (err) throw new Error(err)
+    res.render('./users/editUser',{
+      findOneUser: findOneUser
+    });
+  })
 })
 
 router.put('/:id', function (req, res) {
-  res.send('users id put')
+  res.send('posted')
+  // user.update({name: })
+    // res.send('users id edit')
 })
 
 router.delete('/:id', function (req, res) {
-  res.send('users id delete')
+  console.log(req.body.newuser)
+  console.log('at router: ' + req.body.newuser.name)
+  users.remove( { name : req.body.newuser.name}, true )
+  res.send('user ' + req.params.id + '\'s account has been removed.')
 })
 
 module.exports = router

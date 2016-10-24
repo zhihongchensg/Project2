@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> Adding New User</title>
+  </head>
+
+  <body class="container">
+    <%# <div class="jumbotron">%>
+      <h2> Add New User</h2>
+      <form method="post" action="/users/add">
+
+        <div class="form-group">
+          <label for="Name"> Name</label>
+          <input type="text" class="form-control" id="Name" placeholder="name" name="newuser[name]">
+        </div>
+        <div class="form-group">
+          <label for="Gender">Type</label>
+          <input type="text" class="form-control" id="Gender" placeholder="male female" name="newuser[gender]]">
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="text" class="form-control" id="dob" placeholder="yyyymmdd" name="newuser[dob]">
+        </div>
+        <div class="form-group">
+          <label for="profession">Profession</label>
+          <input type="text" class="form-control" id="profession" placeholder="lawyer, doctor, engineer" name="newuser[profession]">
+        </div>
+        <div class="form-group">
+          <label for="wealthLevel">Wealth Level</label>
+          <input type="text" class="form-control" id="wealthLevel" placeholder="commoner, privileged, private, forbes" name="newuser[wealthLevel]">
+        </div>
+
+<%# can put name = "newuser[name]" and password = "newuser[password]" in the name s"%>
+
+        <button type="submit" class="btn btn-default">Submit</button>
+      </form>
+  </body>
+</html>

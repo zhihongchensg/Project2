@@ -5,6 +5,7 @@ var port = 4000
 var layout = require('express-ejs-layouts')
 var bodyParser = require('body-parser')
 var morgan = require('morgan')
+var override = require ('method-override')
 
 var mongoose = require('mongoose')
 mongoose.Promise = global.Promise // before connect need to set promise first

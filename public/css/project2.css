@@ -8,6 +8,10 @@ input[type="submit"], input[type="submit"]:hover {
   color: white;
 }
 
-div {
+h1, h2, h3 {
   text-align: center;
+}
+
+textarea:focus, input:focus {
+    color: red;
 }

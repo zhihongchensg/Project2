@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title> PRIVATE: User Details</title>
+  </head>
+
+  <body class="container">
+    <%# <div class="jumbotron">%>
+    <h2>  ... PRIVATE ...  </h2>
+    <h3> .... Details of <%= findOneUser.name %>....  </h3>
+
+<%# method="delete" action="/users/:id"%>
+      <form class = "editUser" >
+        <div class="form-group">
+          <label for="Name"> Name</label>
+          <input type="text" class="form-control" id="Name" value= <%=findOneUser.name%> name="newuser[name]">
+        </div>
+        <div class="form-group">
+          <label for="Gender">Type</label>
+          <input type="text" class="form-control" id="Gender" value= <%=findOneUser.gender%> name="newuser[gender]">
+        </div>
+        <div class="form-group">
+          <label for="dob">Date of Birth</label>
+          <input type="text" class="form-control" id="dob" value=<%=findOneUser.dob%> name="newuser[dob]">
+        </div>
+        <div class="form-group">
+          <label for="profession">Profession</label>
+          <input type="text" class="form-control" id="profession" value=<%=findOneUser.profession%> name="newuser[profession]">
+        </div>
+        <div class="form-group">
+          <label for="wealthLevel">Wealth Level</label>
+          <input type="text" class="form-control" id="wealthLevel" value=<%=findOneUser.wealthLevel%> name="newuser[wealthLevel]">
+        </div>
+
+<%# can put name = "newuser[name]" and password = "newuser[password]" in the name s"%>
+
+        <%# <input type="Modify" value = "Modify" class="btn btn-success">%>
+        <input type="submit" value = "Delete" id = "deleteUser" class="btn btn-warning">
+
+      </form>
+  </body>
+</html>
