@@ -12,6 +12,6 @@ h1, h2, h3 {
   text-align: center;
 }
 
-textarea:focus, input:focus {
+a, textarea:focus, input:focus {
     color: red;
 }

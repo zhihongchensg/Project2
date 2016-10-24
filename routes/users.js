@@ -56,14 +56,8 @@ router.get('/profile', function (req, res) {
     res.redirect('/login');
   // if they aren't redirect them to the home page
   // res.redirect('/profile');
-  // res.render('users/profile', { message: req.flash('loginMessage') })
-  // window.addEventListener("beforeunload", function (e) {
-  //   var confirmationMessage = "Going off already?";
-  //
-  //   e.returnValue = confirmationMessage;     // Gecko, Trident, Chrome 34+
-  //   return confirmationMessage;              // Gecko, WebKit, Chrome <34
-  // });
-  res.send(req.user)
+  res.render('users/profile', { message: req.flash('loginMessage') })
+
 })
 
 router.get('/logout', function (req, res) {
@@ -73,7 +67,7 @@ router.get('/logout', function (req, res) {
 
 
 
-// ================= below for authentication, incorporated into my profile page, did not use the functinos=========
+// ================= this section for authentication, incorporated into my profile page, did not use the functinos=========
 
 function isLoggedIn(req, res, next) {
     // res.send(req.isAuthenticated())
@@ -89,7 +83,7 @@ function isNotLoggedIn(req, res, next) {
   // if they aren't redirect them to the home page
   res.redirect('/profile');
 }
-// ================================
+// ===============================================
 
 
 
