@@ -1,10 +1,49 @@
-<h1>Heyow Logged in User</h1>
 
-<% if(message.length > 0) { %>
-  <h3>Flash Found</h3>
-  <div class="alert alert-danger">
-    <%= message %>
+
+<p> <%= message %> , how art thou    </p> <a href="/logout">Logout</a>
+
+<br>
+<h2>What can we help you with today?</h2>
+<br><br>
+<div class = container>
+  <input type="text" class = "form-control" name="userInput"><br>
+  <%# <input type="button" name="name" value="">%>
+</div>
+
+<form class = "editUser" >
+  <div class="container" >
+    <input type="submit" value = "Add Asset" id = "addAsset" class="btn btn-success">
+    <%# <input type="submit" value = "Delete Asset" id = "deleteAsset" class="btn btn-warning">
+    <input type="submit" value = "Edit Asset" id = "editAsset" class="btn btn-success">
+    <input type="submit" value = "View Asset" id = "viewAsset" class="btn btn-warning">%>
+    <input type="submit" value = "View / Edit <%= message %> Details" id = "editUser" class="btn btn-info">
   </div>
-<% } %>
+</form>
 
-<a href="/logout">Logout</a>
+<br><br>
+<h3> <b> Listing of all your Assets </b> </h3>
+<br>
+
+<div class="container">
+ <table class="table table-hover">
+   <thead>
+     <tr>
+       <th>Asset Name</th>
+       <th>Purchase Price</th>
+       <th>Selling Price</th>
+       <th>Asset Type</th>
+     </tr>
+   </thead>
+   <tbody>
+     <% listAssets.forEach(function(assets) { %>
+
+     <tr>
+       <td><a href="/assets/<%=assets.id %>"> <%= assets.assetName %> </a><br></td>
+       <td><%= assets.purchasePrice %><br></td>
+       <td><%= assets.sellingPrice %></td>
+       <td><%= assets.assetType %></td>
+     </tr>
+
+     <% }) %>
+   </tbody>
+ </table>

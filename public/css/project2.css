@@ -15,3 +15,7 @@ h1, h2, h3 {
 a, textarea:focus, input:focus {
     color: red;
 }
+
+td {
+  color: black;
+}

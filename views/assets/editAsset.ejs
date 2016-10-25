@@ -8,35 +8,32 @@
   <body class="container">
     <%# <div class="jumbotron">%>
     <h2>  ... ASSET DESCRIPTION ...  </h2>
-    <h3> ....  <%= findOneAsset.name %>....  </h3>
+    <h3> ....  <%= selectedAsset.assetName %>....  </h3>
+<% console.log(selectedAsset.assetName) %>
 
 <%# method="delete" action="/users/:id"%>
-      <form class = "editUser" >
-        <div class="form-group">
-          <label for="Name"> Name</label>
-          <input type="text" class="form-control" id="Name" value= <%=findOneUser.name%> name="newuser[name]">
-        </div>
-        <div class="form-group">
-          <label for="Gender">Type</label>
-          <input type="text" class="form-control" id="Gender" value= <%=findOneUser.gender%> name="newuser[gender]">
-        </div>
-        <div class="form-group">
-          <label for="dob">Date of Birth</label>
-          <input type="text" class="form-control" id="dob" value=<%=findOneUser.dob%> name="newuser[dob]">
-        </div>
-        <div class="form-group">
-          <label for="profession">Profession</label>
-          <input type="text" class="form-control" id="profession" value=<%=findOneUser.profession%> name="newuser[profession]">
-        </div>
-        <div class="form-group">
-          <label for="wealthLevel">Wealth Level</label>
-          <input type="text" class="form-control" id="wealthLevel" value=<%=findOneUser.wealthLevel%> name="newuser[wealthLevel]">
-        </div>
+<form class = "editAssetsform">
+  <div class="form-group">
+    <label for="assetName"> Asset Name</label>
+    <input type="text" class="form-control" id="assetName" value = "<%=selectedAsset.assetName%>" name="newAsset[assetName]">
+  </div>
+  <div class="form-group">
+    <label for="purchasePrice">Purchase Price</label>
+    <input type="text" class="form-control" id="purchasePrice" value = "<%=selectedAsset.purchasePrice%>" name="newAsset[purchasePrice]">
+  </div>
+  <div class="form-group">
+    <label for="sellingPrice">Selling Price</label>
+    <input type="text" class="form-control" id="sellingPrice" value = "<%=selectedAsset.sellingPrice%>" name="newAsset[sellingPrice]">
+  </div>
+  <div class="form-group">
+    <label for="assetType">Asset Type</label>
+    <input type="text" class="form-control" id="assetType" value = "<%=selectedAsset.assetType%>" name="newAsset[assetType]">
+  </div>
 
 <%# can put name = "newuser[name]" and password = "newuser[password]" in the name s"%>
 
-        <input type="submit" value = "Modify" id = "modifyUser" class="btn btn-success">
-        <input type="submit" value = "Delete" id = "deleteUser" class="btn btn-warning">
+        <input type="submit" value = "Modify" id = "editAsset" class="btn btn-success">
+        <input type="submit" value = "Delete" id = "deleteAsset" class="btn btn-warning">
 
       </form>
   </body>

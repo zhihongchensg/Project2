@@ -5,7 +5,23 @@ var userSchema = new mongoose.Schema({
   local: {
     name: String,
     email: String,
-    password: String
+    password: String,
+    gender: {
+      type: String,
+      default: '*'
+    },
+    dob: {
+      type: String,
+      default: '*'
+    },
+    profession: {
+      type: String,
+      default: '*'
+    },
+    marital: {
+      type: String,
+      default: '*'
+    },
   }
 })
 

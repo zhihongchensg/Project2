@@ -2,11 +2,11 @@ var mongoose = require('mongoose')
 
 var assetSchema = new mongoose.Schema({
   //data type
-  name: String,
-  price: Number,
+  assetName: String,
+  purchasePrice: Number,
+  sellingPrice: Number,
   assetType: String,
-  datePurchase: Date,
-  userName: {
+  userName: { //note this is actually userID
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User'
   }

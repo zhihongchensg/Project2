@@ -1,6 +1,7 @@
 var express = require('express')
 var router = express.Router()
 var User = require('../model/user')
+var Asset = require('../model/asset')
 
 var passport = require('passport')
 
@@ -56,14 +57,66 @@ router.get('/profile', function (req, res) {
     res.redirect('/login');
   // if they aren't redirect them to the home page
   // res.redirect('/profile');
-  res.render('users/profile', { message: req.flash('loginMessage') })
+  // var currentUser=req.user.local.name
+  console.log(req.user._id)
+//req.flash('loginMessage')
+  Asset.find({userName: req.user._id}, function (err, listAssets) {
 
+    // listAssets.forEach(function(assets) {
+    //   console.log(assets.id)
+    // })
+    //
+    // res.send(listAssets)
+
+    res.render('users/profile',
+    {
+      message: req.user.local.name,
+      listAssets: listAssets
+    })
+  })
 })
 
 router.get('/logout', function (req, res) {
   req.logout()
   res.redirect('/login')
 })
+
+
+
+// ========================== section for edit of users ===============
+
+router.get('/edit', function (req, res) {
+  if (! req.isAuthenticated())
+    res.redirect('/login');
+
+  console.log(req.user.local)
+  res.render('users/editUser', {
+  findOneUser: req.user.local
+    })
+})
+
+router.put('/edit', function (req, res) {
+  console.log('at route check: ' + req.user.local.email)
+  User.update(
+    {'local.email': req.user.local.email},
+    {
+      'local.gender': req.body.user.gender,
+      'local.dob': req.body.user.dob,
+      'local.profession':req.body.user.profession,
+      'local.marital':req.body.user.marital
+    },
+    function (err, doc) {
+      if (err) return handleError(err);
+    }
+  )
+  console.log('am back at put routes')
+  console.log(req.body.user)
+  console.log('my user body gender' + req.body.user.gender)
+  res.send('done')
+
+})
+
+// =========================================
 
 
 

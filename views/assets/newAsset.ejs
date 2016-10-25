@@ -8,32 +8,28 @@
   <body class="container">
     <%# <div class="jumbotron">%>
       <h2> Add New Asset</h2>
-      <form method="post" action="/assets/add">
 
+      <form method="post" action="/assets/add">
         <div class="form-group">
           <label for="Name"> Asset Name</label>
-          <input type="text" class="form-control" id="Name" placeholder="asset name" name="newAsset[name]">
+          <input type="text" class="form-control" id="assetName" placeholder="keppel shares, 1037 serangoon rd" name="newAsset[assetName]">
         </div>
         <div class="form-group">
-          <label for="Price">Price</label>
-          <input type="text" class="form-control" id="Price" placeholder="$$$" name="newAsset[price]">
+          <label for="Purchase Price">Purchase Price</label>
+          <input type="text" class="form-control" id="purchasePrice" placeholder="$$$" name="newAsset[purchasePrice]">
         </div>
         <div class="form-group">
-          <label for="assetType">Asset Type</label>
-          <input type="text" class="form-control" id="assetType" placeholder="stock, share, car, property" name="newAsset[assetType]">
+          <label for="Selling Price">Selling Price</label>
+          <input type="text" class="form-control" id="sellingPrice" placeholder="if you selling... put a price" name="newAsset[sellingPrice]">
         </div>
         <div class="form-group">
-          <label for="datePurchase">Date of Purchase</label>
-          <input type="text" class="form-control" id="datePurchase" placeholder="yyyymmdd" name="newAsset[datePurchase]">
-        </div>
-        <div class="form-group">
-          <label for="userName">Owner / User Name</label>
-          <input type="text" class="form-control" id="userName" placeholder="asset owner name" name="newAsset[userName]">
+          <label for="Asset Type">Asset Type</label>
+          <input type="text" class="form-control" id="assetType" placeholder="stock shares car property" name="newAsset[assetType]">
         </div>
 
 <%# can put name = "newAsset[name]" and password = "newAsset[password]" in the name s"%>
 
-        <button type="submit" class="btn btn-default">Submit</button>
+        <button type="submit" class="btn btn-default" id="assetAdd">Submit</button>
       </form>
   </body>
 </html>
