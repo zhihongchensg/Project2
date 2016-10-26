@@ -31,11 +31,88 @@ function authCheck (req, res, next) {
 //     })
 // })
 
+router.get('/checkBids', function (req,res){
+  if (! req.isAuthenticated())
+    res.redirect('/login');
+
+  console.log('at transaction router /')
+  transaction.find( {assetOwnerID: req.user._id} )  //, status: "on Market"}
+  .populate ('assetOwnerID highestBidderID assetID')
+  .exec (function(err, forSaleList) {
+    console.log(forSaleList)
+    res.render('transactions/bidsList', {
+      currentUser: req.user,
+      forSaleList: forSaleList
+    })
+  })
+})
+
+router.get('/checkBids/:id', function (req, res) {
+  if (! req.isAuthenticated())
+    res.redirect('/login');
+
+  transaction.findOne( {_id: req.params.id } )
+  .populate ('assetOwnerID highestBidderID assetID')
+  .exec (function(err, forSaleList) {
+    console.log('the :'+ req.params.id)
+    console.log('for sale list here: ')
+    console.log(forSaleList.assetID.assetName)
+    res.render('transactions/highestBid', {
+      currentUser: req.user,
+      forSaleList: forSaleList
+    })
+    // console.log(req.user)
+  })
+})
+
+
+router.post('/checkBids/:id', function(req,res){
+
+  transaction.findOne( {_id: req.params.id })
+  .populate ('highestBidderID assetID')
+  .exec (function(err, bidItem) {
+      console.log(bidItem)
+      console.log('the params ...' + req.params.id)
+      console.log('bidItem.status ' + bidItem.status)
+      console.log('bidItem.assetID.Id ' + bidItem.assetID.onMarket)
+
+      transaction.update(
+        {_id : req.params.id},
+        {
+          status: 'Sold'
+        },
+        function (err, doc) {
+          if (err) return handleError(err);
+        }
+      )
+      console.log('bidItem.status -- ' + bidItem.highestBid)
+      console.log('bidItem.assetID.Id -- ' + bidItem.assetID.onMarket)
+
+      asset.update(
+        {_id : bidItem.assetID._id},
+        {
+          purchasePrice : bidItem.highestBid,
+          sellingPrice: 0,
+          onMarket: 'Not for Sale',
+          userName: bidItem.highestBidderID._id
+        },
+        function (err, doc) {
+          if (err) return handleError(err);
+        }
+      )
+
+  })
+  res.redirect('/profile')
+})
+
 
 
 router.get('/', function (req,res){
+  if (! req.isAuthenticated())
+    res.redirect('/login');
+
   console.log('at transaction router /')
-  transaction.find( {assetOwnerID: { $ne: req.user._id } })
+  transaction.find( {assetOwnerID: { $ne: req.user._id }, status: {$ne: 'sold'}})
   .populate ('assetOwnerID highestBidderID assetID')
   .exec (function(err, forSaleList) {
     console.log(forSaleList)
@@ -43,7 +120,6 @@ router.get('/', function (req,res){
       currentUser: req.user,
       forSaleList: forSaleList
     })
-    console.log(req.user)
   })
 })
 
@@ -156,40 +232,43 @@ router.post('/add', function (req, res) {
 // read all movies' details
 
 router.get('/:id', function (req, res) {
+  if (! req.isAuthenticated())
+    res.redirect('/login');
+
   transaction.findOne( {_id: req.params.id } )
   .populate ('assetOwnerID highestBidderID assetID')
   .exec (function(err, forSaleList) {
     console.log('the :'+ req.params.id)
-    console.log('for sale list here: ')
-    console.log(forSaleList)
+    // console.log('for sale list here: ')
+    // console.log(forSaleList)
     res.render('transactions/oneTransaction', {
       currentUser: req.user,
       forSaleList: forSaleList
     })
-    console.log(req.user)
+    // console.log(req.user)
   })
 })
 
 
 router.post('/:id', function(req,res){
-  if (req.body.interested.highestBid < req.body.interested.yourBid)
-    res.redirect('/transactions')
+  var a = Number(req.body.interested.highestBid)
+  var b = Number(req.body.interested.yourBid)
+  if (a<b){
+    transaction.update(
+      {_id : req.params.id},
+      {
+        highestBidderID: req.user._id,
+        highestBid:req.body.interested.yourBid
+      },
+      function (err, doc) {
+        if (err) return handleError(err);
+        console.log('UPDATE HIGH BID DONE')
+      }
+    )
+  }
+  res.redirect('/transactions')
+})
 
-  console.log('THE CURRENT LINK ID:' + req.params.id)
-  console.log(req.user._id)
-  console.log(req.body.interested.yourBid)
-
-  // transaction.update(
-  //   {_id : req.params.id},
-  //   {
-  //     highestBidderID: req.user._id,
-  //     highestBid:req.body.interested.yourBid
-  //   },
-  //   function (err, doc) {
-  //     if (err) return handleError(err);
-  //   }
-  // )
-  })
   // .populate ('assetOwnerID highestBidderID assetID')
   // .exec (function(err, forSaleList) {
   //   console.log('the :'+ req.params.id)

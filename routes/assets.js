@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 var asset = require('../model/asset')
 var user = require('../model/user')
+var transaction = require('../model/transaction')
 
 
 var passport = require('passport')
@@ -96,8 +97,14 @@ router.delete('/:id', function (req, res) {
   asset.remove( {_id : req.params.id}, function (err) {
     if (err) return handleError(err);
     // removed!
-});
-res.send('done')
+  });
+
+  transaction.remove( {assetID : req.params.id}, function (err) {
+    if (err) return handleError(err);
+    // removed!
+  });
+  
+  res.send('done')
 })
 
 router.delete('/:id', function (req, res) {

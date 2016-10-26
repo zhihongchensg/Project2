@@ -1,9 +1,9 @@
 <h2>  ... PRIVATE ...  </h2>
-<h3> .... Available for Sale ... limited time only... </h3>
+<h3> .... Wan take the current Highest Bid?... </h3>
 
 
 
-<form class = "interestedForm" method = "post" action="/transactions/<%=forSaleList._id%>" >
+<form class = "interestedForm" method = "post" action="/transactions/checkBids/<%=forSaleList._id%>" >
   <div class="form-group">
     <label for="assetName"> Asset Name</label>
     <input type="text" class="form-control" value = "<%=forSaleList.assetID.assetName%>" readonly="readonly" name="interested[assetName]">
@@ -29,13 +29,8 @@
     <input type="text" class="form-control" value = "<%=forSaleList.highestBidderID.local.name%>" readonly="readonly" name="interested[highestBidderID_Name]">
   </div>
 
-  <div class="form-group">
-    <label for="your Bid"> Your Bid</label>
-    <input type="text" class="form-control" placeholder = "must be higher than highest bid" name="interested[yourBid]">
-  </div>
-
 <%# can put name = "newuser[name]" and password = "newuser[password]" in the name s"%>
-  <input type="submit" value = "offer Bid" id = "offerBid" class="btn btn-success">
+  <input type="submit" value = "Accept Bid" id = "acceptBid" class="btn btn-success">
 
 </form>
 

@@ -1,16 +1,19 @@
 $(document).ready(function () {
   console.log('good to go')
 
-  
+
+  $('#viewSaleAsset').click(function(e) {
+    e.preventDefault();
+    window.location = '/transactions/checkBids'
+  })
+
   $('#gotMoney').click(function(e) {
     e.preventDefault();
-    alert('am here at ajax gotmoney')
     window.location = '/transactions'
   })
 
   $('#offSale').click(function(e) {
     e.preventDefault();
-    alert('am here at delete asset')
     var formdata = $('.editAssetsform').serializeArray()
     // var teamElement = $('.editUser');
     // var teamUrl = teamElement.attr('href');
@@ -28,7 +31,6 @@ $(document).ready(function () {
     }).done(function(data) {
       // get data returned from the PUT route
       console.log(data);
-      alert(data)
       // do stuff when the PUT action is complete
       // teamElement.remove();
       window.location = '/profile'
@@ -40,7 +42,7 @@ $(document).ready(function () {
   $('#putOnSale').click(function(e) {
     e.preventDefault();
     var formdata = $('.editAssetsform').serializeArray()
-    var teamElement = $('.editUser');
+    // var teamElement = $('.editUser');
     // var teamUrl = teamElement.attr('href');
 
     // console.log(teamElement)
@@ -57,20 +59,18 @@ $(document).ready(function () {
       // do stuff when the PUT action is complete
       // if(responseText === 'showAlert')
       //     alert("Please enter correct user name and password.")
-      teamElement.remove();
+      // teamElement.remove();
       window.location = '/profile'
   })
 })
 
   $('#editUser').click(function(e) {
     e.preventDefault();
-    alert('am here at editUser')
     window.location = '/edit'
   })
 
   $('#addAsset').click(function(e) {
     e.preventDefault();
-    alert('am here at addAsset')
     window.location = '/assets/add'
   })
 
@@ -79,10 +79,10 @@ $(document).ready(function () {
     e.preventDefault();
     // alert('am here at modify')
     var formdata = $('.editUser').serializeArray()
-    var teamElement = $('.editUser');
+    // var teamElement = $('.editUser');
     // var teamUrl = teamElement.attr('href');
 
-    console.log(teamElement)
+    // console.log(teamElement)
     // console.log('i am teamurl ' + teamUrl)
     console.log($('#profession').val())
     console.log($('#Name').val())
@@ -94,9 +94,8 @@ $(document).ready(function () {
     }).done(function(data) {
       // get data returned from the PUT route
       console.log(data);
-      alert(data)
       // do stuff when the PUT action is complete
-      teamElement.remove();
+      // teamElement.remove();
       window.location = '/profile'
       // or, you can redirect to another page
     });
@@ -106,9 +105,8 @@ $(document).ready(function () {
 
   $('#deleteAsset').click(function(e) {
     e.preventDefault();
-    alert('am here at delete asset')
     var formdata = $('.editAssetsform').serializeArray()
-    var teamElement = $('.editUser');
+    // var teamElement = $('.editUser');
     // var teamUrl = teamElement.attr('href');
 
     // console.log(teamElement)
@@ -124,9 +122,9 @@ $(document).ready(function () {
     }).done(function(data) {
       // get data returned from the PUT route
       console.log(data);
-      alert(data)
+
       // do stuff when the PUT action is complete
-      teamElement.remove();
+      // teamElement.remove();
       window.location = '/profile'
       // or, you can redirect to another page
     });
@@ -135,9 +133,8 @@ $(document).ready(function () {
 
   $('#editAsset').click(function(e) {
     e.preventDefault();
-    alert('am here at edit asset')
     var formdata = $('.editAssetsform').serializeArray()
-    var teamElement = $('.editUser');
+    // var teamElement = $('.editUser');
     // var teamUrl = teamElement.attr('href');
 
     // console.log(teamElement)
@@ -153,9 +150,8 @@ $(document).ready(function () {
     }).done(function(data) {
       // get data returned from the PUT route
       console.log(data);
-      alert(data)
       // do stuff when the PUT action is complete
-      teamElement.remove();
+      // teamElement.remove();
       window.location = '/profile'
       // or, you can redirect to another page
     });

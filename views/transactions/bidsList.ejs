@@ -1,0 +1,33 @@
+<h2>  ... PRIVATE ...  </h2>
+<h3> .... ALL TRANSACTIONS that are <%=currentUser.local.name%> .... </h3>
+
+<br><br>
+
+<div class="container">
+ <table class="table table-hover">
+   <thead>
+     <tr>
+       <th>Asset Name</th>
+       <th>Asset Status</th>
+       <th>Asset Type</th>
+       <th>Asset Owner</th>
+       <th>Highest Bid</th>
+       <th>Highest Bidder Name</th>
+
+     </tr>
+   </thead>
+   <tbody>
+     <% forSaleList.forEach(function(transact) { %>
+
+     <tr>
+       <td><a href="/transactions/checkBids/<%=transact.id %>"> <%= transact.assetID.assetName %></a><br></td>
+       <td><%= transact.assetID.onMarket%><br></td>
+       <td><%= transact.assetID.assetType%></td>
+       <td><%= transact.assetOwnerID.local.name%></td>
+       <td><%= transact.highestBid %></td>
+       <td><%= transact.highestBidderID.local.name %></td>
+     </tr>
+
+     <% }) %>
+   </tbody>
+ </table>
