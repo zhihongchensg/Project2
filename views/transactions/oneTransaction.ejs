@@ -1,0 +1,40 @@
+<h2>  ... PRIVATE ...  </h2>
+<h3> .... Available for Sale ... limited time only... </h3>
+
+<form class = "interestedForm" method = "post" action="/transactions/:id" >
+  <div class="form-group">
+    <label for="assetName"> Asset Name</label>
+    <input type="text" class="form-control" value = "<%=forSaleList.assetID.assetName%>" readonly="readonly" name="interested[assetName]">
+  </div>
+  <div class="form-group">
+    <label for="onMarket"> on Market</label>
+    <input type="text" class="form-control" value = "<%=forSaleList.assetID.onMarket%>" readonly="readonly" name="interested[onMarket]">
+  </div>
+  <div class="form-group">
+    <label for="assetType"> Asset Type</label>
+    <input type="text" class="form-control" value = "<%=forSaleList.assetID.assetType%>" readonly="readonly" name="interested[assetType]">
+  </div>
+  <div class="form-group">
+    <label for="asset Owner"> Asset Owner</label>
+    <input type="text" class="form-control" value = "<%=forSaleList.assetOwnerID.local.name%>" readonly="readonly" name="interested[assetOwnerID_Name]">
+  </div>
+  <div class="form-group">
+    <label for="highest Bid"> Highest Bid</label>
+    <input type="text" class="form-control" value = "<%=forSaleList.highestBid%>" readonly="readonly" name="interested[highestBid]">
+  </div>
+  <div class="form-group">
+    <label for="Highest Bidder"> Highest Bidder Name</label>
+    <input type="text" class="form-control" value = "<%=forSaleList.highestBidderID.local.name%>" readonly="readonly" name="interested[highestBidderID_Name]">
+  </div>
+
+  <div class="form-group">
+    <label for="your Bid"> Your Bid</label>
+    <input type="text" class="form-control" placeholder = "must be higher than highest bid" name="interested[yourBid]">
+  </div>
+
+<%# can put name = "newuser[name]" and password = "newuser[password]" in the name s"%>
+  <input type="submit" value = "offer Bid" id = "offerBid" class="btn btn-success">
+
+</form>
+
+</body>

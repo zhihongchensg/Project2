@@ -2,6 +2,7 @@ var express = require('express')
 var router = express.Router()
 var User = require('../model/user')
 var Asset = require('../model/asset')
+var Transaction = require('../model/transaction')
 
 var passport = require('passport')
 
@@ -44,7 +45,7 @@ router.route('/login')
       }))
 
 router.get('/error', function (req, res) {
-  res.render('users/error')
+  res.render('users/errors')
 })
 
 router.get('logout', function(req,res){
@@ -60,13 +61,8 @@ router.get('/profile', function (req, res) {
   // var currentUser=req.user.local.name
   console.log(req.user._id)
 //req.flash('loginMessage')
-  Asset.find({userName: req.user._id}, function (err, listAssets) {
 
-    // listAssets.forEach(function(assets) {
-    //   console.log(assets.id)
-    // })
-    //
-    // res.send(listAssets)
+  Asset.find({userName: req.user._id}, function (err, listAssets) {
 
     res.render('users/profile',
     {

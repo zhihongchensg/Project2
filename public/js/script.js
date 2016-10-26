@@ -1,16 +1,77 @@
 $(document).ready(function () {
   console.log('good to go')
 
+  
+  $('#gotMoney').click(function(e) {
+    e.preventDefault();
+    alert('am here at ajax gotmoney')
+    window.location = '/transactions'
+  })
+
+  $('#offSale').click(function(e) {
+    e.preventDefault();
+    alert('am here at delete asset')
+    var formdata = $('.editAssetsform').serializeArray()
+    // var teamElement = $('.editUser');
+    // var teamUrl = teamElement.attr('href');
+
+    // console.log(teamElement)
+    // // console.log('i am teamurl ' + teamUrl)
+    // console.log($('#profession').val())
+    // console.log($('#Name').val())
+    console.log(formdata);
+    console.log(window.location.href)
+    $.ajax({
+      method: 'delete',
+      url: '/transactions/delete',
+      data: formdata
+    }).done(function(data) {
+      // get data returned from the PUT route
+      console.log(data);
+      alert(data)
+      // do stuff when the PUT action is complete
+      // teamElement.remove();
+      window.location = '/profile'
+      // or, you can redirect to another page
+    });
+  })
+
+
+  $('#putOnSale').click(function(e) {
+    e.preventDefault();
+    var formdata = $('.editAssetsform').serializeArray()
+    var teamElement = $('.editUser');
+    // var teamUrl = teamElement.attr('href');
+
+    // console.log(teamElement)
+    // // console.log('i am teamurl ' + teamUrl)
+    // console.log($('#profession').val())
+    // console.log($('#Name').val())
+    console.log(formdata);
+    $.ajax({
+      method: 'post',
+      url: '/transactions/add',
+      data: formdata
+    }).done(function(err) {
+      // get data returned from the PUT route
+      // do stuff when the PUT action is complete
+      // if(responseText === 'showAlert')
+      //     alert("Please enter correct user name and password.")
+      teamElement.remove();
+      window.location = '/profile'
+  })
+})
+
   $('#editUser').click(function(e) {
     e.preventDefault();
     alert('am here at editUser')
-  window.location = '/edit'
+    window.location = '/edit'
   })
 
   $('#addAsset').click(function(e) {
     e.preventDefault();
     alert('am here at addAsset')
-  window.location = '/assets/add'
+    window.location = '/assets/add'
   })
 
 

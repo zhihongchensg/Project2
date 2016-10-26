@@ -53,6 +53,9 @@ router.post('/add', function (req, res) {
 })
 
 router.get('/:id', function (req, res) {
+  if (! req.isAuthenticated())
+    res.redirect('/login');
+
   console.log('id get id' + req.params.id)
   asset.findOne({_id: req.params.id}, function(err, selectedAsset) {
     console.log(selectedAsset)
@@ -70,7 +73,8 @@ router.put('/:id', function (req, res) {
         assetName: req.body.newAsset.assetName,
         purchasePrice: req.body.newAsset.purchasePrice,
         sellingPrice:req.body.newAsset.sellingPrice,
-        assetType:req.body.newAsset.assetType
+        assetType:req.body.newAsset.assetType,
+        onMarket: "Available for Sale"
       },
       function (err, doc) {
         if (err) return handleError(err);
