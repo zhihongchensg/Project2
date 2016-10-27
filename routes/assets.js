@@ -75,7 +75,7 @@ router.put('/:id', function (req, res) {
         purchasePrice: req.body.newAsset.purchasePrice,
         sellingPrice:req.body.newAsset.sellingPrice,
         assetType:req.body.newAsset.assetType,
-        onMarket: "Available for Sale"
+        onMarket: "For Sale to HIGHEST Bidder"
       },
       function (err, doc) {
         if (err) return handleError(err);
@@ -103,12 +103,8 @@ router.delete('/:id', function (req, res) {
     if (err) return handleError(err);
     // removed!
   });
-  
-  res.send('done')
-})
 
-router.delete('/:id', function (req, res) {
-  res.send('asset id delete')
+  res.send('done')
 })
 
 module.exports = router

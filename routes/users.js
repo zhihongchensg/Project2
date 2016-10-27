@@ -48,9 +48,9 @@ router.get('/error', function (req, res) {
   res.render('users/errors')
 })
 
-router.get('logout', function(req,res){
+router.get('/logout', function(req,res){
   req.logout()
-  res.redirect('/')
+  res.redirect('/login')
 })
 
 router.get('/profile', function (req, res) {
@@ -70,11 +70,6 @@ router.get('/profile', function (req, res) {
       listAssets: listAssets
     })
   })
-})
-
-router.get('/logout', function (req, res) {
-  req.logout()
-  res.redirect('/login')
 })
 
 

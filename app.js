@@ -50,10 +50,17 @@ var users_routes = require('./routes/users')
 var assets_routes = require('./routes/assets')
 var transactions_routes = require('./routes/transactions')
 
+var usersAPI_routes = require('./routes/users_api')
+var assetsAPI_routes = require('./routes/assets_api')
+var transactionsAPI_routes = require('./routes/transactions_api')
+
 app.use('/', users_routes)
 app.use('/assets', assets_routes)
 app.use('/transactions', transactions_routes)
 
+app.use('/usersapi', usersAPI_routes)
+app.use('/assetsapi', assetsAPI_routes)
+app.use('/transactionsapi', transactionsAPI_routes)
 
 app.listen(process.env.PORT || 4000)
 console.log('Server running')

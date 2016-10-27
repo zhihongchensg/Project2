@@ -159,12 +159,13 @@ router.delete('/delete', function (req, res) {
 })
 
 
-router.get('/add', function (req, res) {
-  if (! req.isAuthenticated())
-    res.redirect('/login');
-
-  res.send('whose ur daddy')
-})
+//  note: there's no get function for /add for transactions
+// router.get('/add', function (req, res) {
+//   if (! req.isAuthenticated())
+//     res.redirect('/login');
+//
+//   res.send('whose ur daddy')
+// })
 
 router.post('/add', function (req, res) {
   console.log('back at router post')
@@ -181,23 +182,22 @@ router.post('/add', function (req, res) {
       }
     )
 
-    transaction.findOneAndUpdate(
-      {assetID: req.body.newAsset.assetId},
-      {$set:
-        {
-          status: 'on market',
-          highestBid: req.body.newAsset.sellingPrice,
-          highestBidderID: req.user._id,
-          assetOwnerID: req.user._id,
-          assetID: req.body.newAsset.assetId,
-        }
-      },
-      {upsert: true},
-      function (err, doc) {
-        if (err) return handleError(err)
+  transaction.findOneAndUpdate(
+    {assetID: req.body.newAsset.assetId},
+    {$set:
+      {
+        status: 'on market',
+        highestBid: req.body.newAsset.sellingPrice,
+        highestBidderID: req.user._id,
+        assetOwnerID: req.user._id,
+        assetID: req.body.newAsset.assetId,
       }
-
-    )
+    },
+    {upsert: true},
+    function (err, doc) {
+      if (err) return handleError(err)
+    }
+  )
 
   // transaction.findOne({assetID: req.body.newAsset.assetId}, function (err, transacAvail) {
   //   console.log(transacAvail)
@@ -247,9 +247,7 @@ router.get('/:id', function (req, res) {
 
 
 router.post('/:id', function(req,res){
-  var a = Number(req.body.interested.highestBid)
-  var b = Number(req.body.interested.yourBid)
-  if (a<b){
+  if (Number(req.body.interested.highestBid) < Number(req.body.interested.yourBid)){
     transaction.update(
       {_id : req.params.id},
       {
