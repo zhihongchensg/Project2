@@ -54,11 +54,12 @@ $(document).ready(function () {
       method: 'post',
       url: '/transactions/add',
       data: formdata
-    }).done(function(err) {
+    }).done(function(sellPrice) {
       // get data returned from the PUT route
       // do stuff when the PUT action is complete
-      // if(responseText === 'showAlert')
-      //     alert("Please enter correct user name and password.")
+      // if(err.responseText === 'showAlert')
+      if (Number(sellPrice)<1)
+          alert('have some pride.. at least be cheap..not free. Go change price' )
       // teamElement.remove();
       window.location = '/profile'
   })

@@ -36,7 +36,7 @@ router.get('/checkBids', function (req,res){
     res.redirect('/login');
 
   console.log('at transaction router /')
-  transaction.find( {assetOwnerID: req.user._id} )  //, status: "on Market"}
+  transaction.find( {assetOwnerID: req.user._id, status: {$ne: 'Sold'}} )  //, status: "on Market"}
   .populate ('assetOwnerID highestBidderID assetID')
   .exec (function(err, forSaleList) {
     console.log(forSaleList)
@@ -112,7 +112,7 @@ router.get('/', function (req,res){
     res.redirect('/login');
 
   console.log('at transaction router /')
-  transaction.find( {assetOwnerID: { $ne: req.user._id }, status: {$ne: 'sold'}})
+  transaction.find( {assetOwnerID: { $ne: req.user._id }, status: {$ne: 'Sold'}})
   .populate ('assetOwnerID highestBidderID assetID')
   .exec (function(err, forSaleList) {
     console.log(forSaleList)
@@ -148,7 +148,7 @@ router.delete('/delete', function (req, res) {
   asset.update(
       {_id : req.body.newAsset.assetId},
       {
-        onMarket: "Not selling no more"
+        onMarket: "Not for Sale"
       },
       function (err, doc) {
         if (err) return handleError(err);
@@ -169,10 +169,6 @@ router.get('/add', function (req, res) {
 router.post('/add', function (req, res) {
   console.log('back at router post')
   console.log(req.body.newAsset)
-
-  // if (req.body.newAsset.sellingPrice < 1) {
-  //   res.send(500, 'showAlert')
-  // }
 
   asset.update(
       {_id: req.body.newAsset.assetId},
@@ -220,7 +216,7 @@ router.post('/add', function (req, res) {
   //   })
   // })
   console.log('new transaction created')
-  res.redirect('/profile')
+  res.send(req.body.newAsset.sellingPrice)
 })
 
 // setting the route to homepage

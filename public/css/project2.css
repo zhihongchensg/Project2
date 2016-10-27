@@ -19,3 +19,11 @@ a, textarea:focus, input:focus {
 td {
   color: black;
 }
+
+.editUser {
+  text-align: center;
+}
+
+.navigation {
+  margin-left: 10px;
+}
