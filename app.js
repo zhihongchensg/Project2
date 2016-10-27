@@ -45,6 +45,11 @@ app.use(passport.session())
 
 app.use(flash())
 
+app.use(function (req, res, next) {
+ res.locals.user = req.user
+ next()
+})
+
 require('./config/passport')(passport)
 var users_routes = require('./routes/users')
 var assets_routes = require('./routes/assets')

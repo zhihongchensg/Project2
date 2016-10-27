@@ -12,7 +12,10 @@
       <br>
 
       <a href="/logout">Logout</a> <a href="/profile" class="navigation">Profile Page</a>
-
+      
+      <%if (user) {%>
+        <p> Hello <%=user.local.name%>, How art thou </p>
+      <%}%>
 
       <%- body %>
 
