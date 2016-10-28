@@ -11,10 +11,21 @@
       <h1>YourAssets.com</h1>
       <br>
 
-      <a href="/logout">Logout</a> <a href="/profile" class="navigation">Profile Page</a>
-      
+      <%# <a href="/logout">Logout</a> <a href="/profile" class="navigation">Profile Page</a>%>
+
       <%if (user) {%>
+
+        <a href="/logout">Logout</a> <a href="/profile" class="navigation">Profile Page</a>
         <p> Hello <%=user.local.name%>, How art thou </p>
+
+        <form class = "editUser" >
+          <div class="container">
+            <input type="submit" value = "View / Edit <%=user.local.name%> Details" id = "editUser" class="btn btn-info navigation">
+            <input type="submit" value = "Add Asset" id = "addAsset" class="btn btn-success navigation">
+            <input type="submit" value = "Wan Buy Somethin?" id = "gotMoney" class="btn btn-warning navigation">
+            <input type="submit" value = "Check My Sale" id = "viewSaleAsset" class="btn btn-warning navigation">
+          </div>
+        </form>
       <%}%>
 
       <%- body %>
