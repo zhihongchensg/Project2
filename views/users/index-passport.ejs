@@ -1,4 +1,4 @@
-<h2>Create new user</h2>
+<h2>Please Sign Up</h2>
 
 <% if(message.length > 0) { %>
   <div class="alert alert-danger">
@@ -15,10 +15,17 @@
       <input type="text" name="user[local][email]" id="user-email" placeholder="Your user email" class="u-full-width">
     </div>
     <div class="four columns">
-      <input type="text" name="user[local][password]" id="user-password" placeholder="Your user password" class="u-full-width">
+      <input type="password" name="user[local][password]" id="user-password" placeholder="Your user password" class="u-full-width">
     </div>
-    <input type="submit" value='Save My User'>
+    <input type="submit" value='Sign Up!'>
   </div>
+
+  <br><br>
+
+  <p> Already have an account? Sign in <a href="/login">HERE</a>
+
+  <br>
+  <br>
 
   <ul id="all-user-list">
   <% allUsers.forEach(function(user) { %>

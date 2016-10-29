@@ -1,6 +1,10 @@
 $(document).ready(function () {
   console.log('good to go')
 
+  $('#profile').click(function(e) {
+    e.preventDefault();
+    window.location = '/profile'
+  })
 
   $('#viewSaleAsset').click(function(e) {
     e.preventDefault();
